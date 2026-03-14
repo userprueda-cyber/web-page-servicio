@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumo de Sustancias - Proyecto de Servicio</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #fafafa;
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: #6b4226; text-decoration: none; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    nav .logo {
+      font-weight: 700; font-size: 1.1rem; color: #d4a574;
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none; display: flex; gap: 0.2rem;
+      flex-wrap: wrap; justify-content: flex-end;
+    }
+    nav ul li a {
+      color: #ccc; padding: 0.4rem 0.7rem; border-radius: 6px;
+      font-size: 0.78rem; transition: all 0.3s; font-weight: 500;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: #fff; background: rgba(212, 165, 116, 0.2);
+    }
+    .nav-toggle {
+      display: none; background: none; border: none; color: #d4a574;
+      font-size: 1.5rem; cursor: pointer;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+      position: relative; overflow: hidden; text-align: center;
+      padding: 2rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(107, 66, 38, 0.06) 0%, transparent 50%);
+      animation: heroFloat 20s ease-in-out infinite;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-2%, -1%); }
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      color: #fff; font-weight: 800;
+      margin-bottom: 0.5rem; line-height: 1.2;
+    }
+    .hero h1 span { color: #d4a574; }
+    .hero .subtitle {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: #a0aec0; margin-bottom: 1rem;
+    }
+    .hero .author {
+      color: #718096; font-size: 0.95rem; margin-bottom: 2rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      background: linear-gradient(135deg, #d4a574, #6b4226);
+      color: #fff; border-radius: 50px; font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+      color: #fff;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 5rem 2rem;
+    }
+    section:nth-child(even) {
+      background: #f0ebe3;
+    }
+    .container {
+      max-width: 900px; margin: 0 auto;
+    }
+    .section-number {
+      font-size: 0.8rem; font-weight: 700; color: #d4a574;
+      text-transform: uppercase; letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800; color: #1a1a2e;
+      margin-bottom: 1.5rem; line-height: 1.2;
+    }
+    .section-text {
+      font-size: 1.05rem; color: #4a5568;
+      margin-bottom: 1.5rem;
+    }
+    .section-text strong { color: #1a1a2e; }
+
+    /* ===== CARDS ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e8e0d4;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .card-icon {
+      font-size: 2.5rem; margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-size: 1.15rem; font-weight: 700; color: #1a1a2e;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.95rem; color: #718096; line-height: 1.6;
+    }
+
+    /* ===== COLLAPSIBLE ===== */
+    .collapsible {
+      margin-top: 1.5rem;
+    }
+    .collapsible-item {
+      border: 1px solid #e8e0d4;
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      overflow: hidden;
+      background: #fff;
+    }
+    .collapsible-header {
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      font-weight: 600; color: #1a1a2e;
+      transition: background 0.3s;
+      user-select: none;
+    }
+    .collapsible-header:hover { background: #f7f3ed; }
+    .collapsible-header .arrow {
+      transition: transform 0.3s; font-size: 0.8rem; color: #d4a574;
+    }
+    .collapsible-item.open .collapsible-header .arrow {
+      transform: rotate(180deg);
+    }
+    .collapsible-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .collapsible-item.open .collapsible-body {
+      max-height: 600px;
+      padding: 0 1.5rem 1.5rem;
+    }
+    .collapsible-body p {
+      color: #4a5568; font-size: 0.95rem; line-height: 1.7;
+    }
+
+    /* ===== METHODOLOGY TIMELINE ===== */
+    .timeline {
+      position: relative;
+      margin-top: 2rem;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: linear-gradient(to bottom, #d4a574, #6b4226);
+      border-radius: 3px;
+    }
+    .timeline-item {
+      position: relative;
+      padding: 1.2rem 0 1.2rem 1.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -2rem; top: 1.6rem;
+      width: 13px; height: 13px;
+      background: #d4a574; border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px #d4a574;
+      transform: translateX(calc(50% - 1.5px));
+    }
+    .timeline-item h4 {
+      font-weight: 700; color: #1a1a2e; margin-bottom: 0.3rem;
+    }
+    .timeline-item p {
+      color: #4a5568; font-size: 0.95rem;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz-container {
+      margin-top: 2rem;
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e8e0d4;
+    }
+    .quiz-question {
+      font-size: 1.1rem; font-weight: 700; color: #1a1a2e;
+      margin-bottom: 1rem;
+    }
+    .quiz-counter {
+      font-size: 0.85rem; color: #d4a574; font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; }
+    .quiz-option {
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #e8e0d4;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.95rem; color: #4a5568;
+    }
+    .quiz-option:hover { border-color: #d4a574; background: #faf6f1; }
+    .quiz-option.correct {
+      border-color: #48bb78; background: #f0fff4; color: #276749;
+    }
+    .quiz-option.incorrect {
+      border-color: #fc8181; background: #fff5f5; color: #9b2c2c;
+    }
+    .quiz-option.disabled { pointer-events: none; }
+    .quiz-feedback {
+      margin-top: 1rem; padding: 1rem;
+      border-radius: 10px; font-size: 0.95rem;
+      display: none;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: #f0fff4; color: #276749; border: 1px solid #c6f6d5; }
+    .quiz-feedback.incorrect-fb { background: #fff5f5; color: #9b2c2c; border: 1px solid #fed7d7; }
+    .quiz-next {
+      margin-top: 1rem;
+      padding: 0.7rem 1.8rem;
+      background: #d4a574; color: #fff; border: none;
+      border-radius: 8px; cursor: pointer; font-weight: 600;
+      font-size: 0.95rem; display: none;
+      transition: background 0.3s;
+    }
+    .quiz-next:hover { background: #6b4226; }
+    .quiz-result {
+      text-align: center; display: none;
+    }
+    .quiz-result h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #1a1a2e; }
+    .quiz-result p { color: #4a5568; font-size: 1.05rem; }
+    .quiz-restart {
+      margin-top: 1rem;
+      padding: 0.7rem 1.8rem;
+      background: #1a1a2e; color: #fff; border: none;
+      border-radius: 8px; cursor: pointer; font-weight: 600;
+      font-size: 0.95rem; transition: background 0.3s;
+    }
+    .quiz-restart:hover { background: #16213e; }
+
+    /* ===== CALCULATOR ===== */
+    .calc-container {
+      margin-top: 2rem;
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e8e0d4;
+    }
+    .calc-container h3 {
+      font-size: 1.2rem; font-weight: 700; color: #1a1a2e;
+      margin-bottom: 1rem;
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .calc-item {
+      text-align: center; padding: 1rem;
+      border: 2px solid #e8e0d4; border-radius: 12px;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .calc-item:hover, .calc-item.selected {
+      border-color: #d4a574; background: #faf6f1;
+    }
+    .calc-item .drink-icon { font-size: 2rem; margin-bottom: 0.4rem; }
+    .calc-item .drink-name { font-weight: 600; color: #1a1a2e; font-size: 0.9rem; }
+    .calc-item .drink-mg { color: #718096; font-size: 0.8rem; }
+    .calc-quantity {
+      margin-top: 1.5rem; display: flex; align-items: center;
+      justify-content: center; gap: 1rem;
+    }
+    .calc-quantity label { font-weight: 600; color: #4a5568; }
+    .calc-quantity input {
+      width: 80px; padding: 0.5rem; text-align: center;
+      border: 2px solid #e8e0d4; border-radius: 8px;
+      font-size: 1.1rem; font-weight: 600;
+    }
+    .calc-quantity input:focus { outline: none; border-color: #d4a574; }
+    .calc-result-box {
+      margin-top: 1.5rem; padding: 1.5rem;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border-radius: 12px; text-align: center; color: #fff;
+    }
+    .calc-result-box .total-mg {
+      font-size: 2.5rem; font-weight: 800; color: #d4a574;
+    }
+    .calc-result-box .total-label {
+      font-size: 0.85rem; color: #a0aec0; margin-bottom: 0.5rem;
+    }
+    .calc-result-box .recommendation {
+      font-size: 0.9rem; color: #cbd5e0; margin-top: 0.5rem;
+    }
+    .calc-bar-container {
+      margin-top: 1rem; background: rgba(255,255,255,0.1);
+      border-radius: 10px; height: 14px; overflow: hidden;
+    }
+    .calc-bar {
+      height: 100%; border-radius: 10px;
+      transition: width 0.5s ease, background 0.5s ease;
+      background: #48bb78;
+    }
+
+    /* ===== HIGHLIGHT BOX ===== */
+    .highlight-box {
+      background: linear-gradient(135deg, #1a1a2e, #0f3460);
+      border-radius: 16px; padding: 2.5rem;
+      color: #fff; margin-top: 2rem;
+    }
+    .highlight-box h3 {
+      color: #d4a574; font-size: 1.3rem; margin-bottom: 0.8rem;
+    }
+    .highlight-box p {
+      color: #cbd5e0; font-size: 1rem; line-height: 1.7;
+    }
+
+    /* ===== TAGS ===== */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+    .tag {
+      padding: 0.4rem 1rem; background: #faf6f1;
+      border: 1px solid #e8e0d4; border-radius: 20px;
+      font-size: 0.85rem; color: #6b4226; font-weight: 500;
+    }
+
+    /* ===== QUOTE ===== */
+    .quote-block {
+      border-left: 4px solid #d4a574;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      background: #faf6f1;
+      border-radius: 0 12px 12px 0;
+    }
+    .quote-block p {
+      font-style: italic; font-size: 1.1rem; color: #4a5568;
+    }
+    .quote-block cite {
+      display: block; margin-top: 0.5rem;
+      font-size: 0.9rem; color: #718096; font-style: normal;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a1a2e;
+      color: #a0aec0;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    footer .footer-title {
+      color: #d4a574; font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    footer p { font-size: 0.9rem; }
+
+    /* ===== PROGRESS BAR (top) ===== */
+    .progress-bar {
+      position: fixed; top: 60px; left: 0; right: 0;
+      height: 3px; z-index: 999;
+      background: rgba(212, 165, 116, 0.2);
+    }
+    .progress-bar .fill {
+      height: 100%; width: 0;
+      background: linear-gradient(90deg, #d4a574, #6b4226);
+      transition: width 0.1s;
+    }
+
+    /* ===== ODS CARDS ===== */
+    .ods-card {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      background: #fff; border-radius: 16px; padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid #e8e0d4;
+      margin-bottom: 1.2rem;
+    }
+    .ods-number {
+      flex-shrink: 0;
+      width: 60px; height: 60px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 800; color: #fff;
+    }
+    .ods-3 { background: #4c9f38; }
+    .ods-4 { background: #c5192d; }
+    .ods-content h3 { font-size: 1.1rem; color: #1a1a2e; margin-bottom: 0.3rem; }
+    .ods-content p { color: #4a5568; font-size: 0.95rem; }
+
+    /* ===== RISK LIST ===== */
+    .risk-list { list-style: none; margin-top: 1.5rem; }
+    .risk-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #e8e0d4;
+    }
+    .risk-list li:last-child { border-bottom: none; }
+    .risk-icon {
+      flex-shrink: 0; width: 40px; height: 40px;
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .risk-high { background: #fff5f5; }
+    .risk-med { background: #fffff0; }
+    .risk-low { background: #f0fff4; }
+    .risk-list h4 { font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .risk-list p { font-size: 0.9rem; color: #718096; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none; flex-direction: column;
+        position: absolute; top: 60px; left: 0; right: 0;
+        background: rgba(26, 26, 46, 0.98);
+        padding: 1rem;
+      }
+      nav ul.open { display: flex; }
+      .nav-toggle { display: block; }
+      section { padding: 3.5rem 1.2rem; }
+      .ods-card { flex-direction: column; }
+      .timeline { padding-left: 1.5rem; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1; transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">PROYECTO DE SERVICIO</div>
+    <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <ul>
+      <li><a href="#tema">Tema</a></li>
+      <li><a href="#introduccion">Intro</a></li>
+      <li><a href="#objetivo">Objetivo</a></li>
+      <li><a href="#fuentes">Fuentes</a></li>
+      <li><a href="#metodologia">Metodologia</a></li>
+      <li><a href="#retos">Retos</a></li>
+      <li><a href="#ib">IB</a></li>
+      <li><a href="#ods">ODS</a></li>
+      <li><a href="#riesgos">Riesgos</a></li>
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#interactivo">Quiz</a></li>
+    </ul>
+  </nav>
+  <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Consumo de <span>Sustancias</span></h1>
+      <p class="subtitle">Un estudio sobre los efectos de la cafeina en el rendimiento fisico y la salud</p>
+      <p class="author">Pablo Rueda &mdash; Proyecto de Servicio</p>
+      <a href="#tema" class="hero-cta">Explorar el proyecto</a>
+    </div>
+  </section>
+
+  <!-- 1. TEMA -->
+  <section id="tema">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 01</p>
+      <h2 class="section-title">El tema: Consumo de Sustancias</h2>
+      <p class="section-text">
+        El consumo de sustancias abarca todas aquellas substancias que alteran el funcionamiento normal de nuestro cuerpo y mente. Desde las drogas ilegales y el alcohol hasta sustancias que consumimos a diario sin pensarlo mucho, como el <strong>cafe</strong>. La cafeina es la droga psicoactiva mas consumida en el mundo, y aunque es legal y socialmente aceptada, tiene efectos reales en nuestro sistema nervioso, ritmo cardiaco y rendimiento fisico.
+      </p>
+      <p class="section-text">
+        Este proyecto se enfoca especificamente en la <strong>cafeina</strong>: como funciona, que le hace a nuestro cuerpo, y si realmente mejora o perjudica nuestro rendimiento. La idea es ir mas alla de la informacion superficial y entender, con datos propios, que pasa cuando variamos la dosis de cafe que consumimos.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">&#9749;</div>
+          <h3>Cafeina</h3>
+          <p>Estimulante del sistema nervioso central presente en cafe, te, bebidas energeticas y chocolate. Bloquea los receptores de adenosina, manteniendote alerta.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9888;</div>
+          <h3>Riesgo oculto</h3>
+          <p>Aunque es legal, el exceso de cafeina puede causar ansiedad, insomnio, taquicardia y dependencia. La dosis segura para adultos es de hasta 400mg diarios.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128200;</div>
+          <h3>El experimento</h3>
+          <p>Estoy midiendo como diferentes dosis de cafe afectan mi rendimiento y ritmo cardiaco en el gimnasio, con datos reales y medibles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. INTRODUCCION -->
+  <section id="introduccion">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 02</p>
+      <h2 class="section-title">Introduccion del Proyecto</h2>
+      <p class="section-text">
+        Vivimos en una sociedad donde el consumo de sustancias esta normalizado de muchas formas. Desde el trago social hasta el cafe de la manana, estas sustancias forman parte de nuestra rutina. Sin embargo, pocas veces nos detenemos a preguntar: <strong>&iquest;realmente sabemos lo que le estamos haciendo a nuestro cuerpo?</strong>
+      </p>
+      <p class="section-text">
+        Este proyecto nace de una curiosidad personal. Como alguien que disfruta del cafe y entrena regularmente, quise entender de manera concreta y medible como la cafeina afecta mi rendimiento fisico. En lugar de simplemente investigar en internet, decidi disenar un experimento propio: probar diferentes dosis de cafe antes de entrenar y medir los cambios en mi ritmo cardiaco y rendimiento.
+      </p>
+
+      <div class="quote-block">
+        <p>&laquo;La cafeina es la sustancia psicoactiva mas consumida del mundo. Mas del 80% de la poblacion mundial la consume diariamente en alguna forma.&raquo;</p>
+        <cite>&mdash; Organizacion Mundial de la Salud</cite>
+      </div>
+
+      <p class="section-text">
+        A traves de esta pagina, presento los hallazgos del proyecto, la metodologia utilizada, y una reflexion sobre como podemos tomar decisiones mas informadas sobre lo que consumimos. El objetivo no es demonizar el cafe, sino <strong>entenderlo</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. OBJETIVO -->
+  <section id="objetivo">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 03</p>
+      <h2 class="section-title">Objetivo General</h2>
+
+      <div class="highlight-box">
+        <h3>Objetivo del Proyecto</h3>
+        <p>
+          Investigar y demostrar, mediante un experimento personal controlado, como diferentes dosis de cafeina afectan el rendimiento fisico y el ritmo cardiaco durante el ejercicio, con el fin de generar conciencia sobre el consumo responsable de sustancias que son parte de nuestra vida diaria.
+        </p>
+      </div>
+
+      <div class="collapsible" style="margin-top: 2rem;">
+        <div class="collapsible-item">
+          <div class="collapsible-header">
+            <span>&iquest;Por que se realiza este proyecto?</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>Porque el consumo de cafeina esta tan normalizado que pocas personas cuestionan sus efectos. Quiero demostrar con datos reales que incluso sustancias legales y cotidianas tienen un impacto medible en nuestro cuerpo.</p>
+          </div>
+        </div>
+        <div class="collapsible-item">
+          <div class="collapsible-header">
+            <span>&iquest;Para que se realiza?</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>Para generar conciencia entre jovenes sobre el consumo responsable de sustancias. No se trata de prohibir el cafe, sino de entender cuanto es demasiado y como afecta nuestro desempeno diario.</p>
+          </div>
+        </div>
+        <div class="collapsible-item">
+          <div class="collapsible-header">
+            <span>&iquest;Como se implementa?</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>A traves de un experimento controlado donde vario las dosis de cafeina antes de entrenar, midiendo ritmo cardiaco y rendimiento. Los resultados se documentan y presentan en esta pagina web interactiva.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FUENTES -->
+  <section id="fuentes">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 04</p>
+      <h2 class="section-title">Fuentes Academicas</h2>
+      <p class="section-text">
+        Las siguientes fuentes academicas respaldan la investigacion de este proyecto. Fueron consultadas a traves de <strong>Google Academico</strong> para garantizar su rigor cientifico.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Fuente 1</h3>
+          <p><strong>Goldstein, E. R., et al. (2010).</strong> &ldquo;International society of sports nutrition position stand: caffeine and performance.&rdquo; <em>Journal of the International Society of Sports Nutrition</em>, 7(1), 5.</p>
+          <div class="tags" style="margin-top:1rem;">
+            <span class="tag">Rendimiento deportivo</span>
+            <span class="tag">Cafeina</span>
+            <span class="tag">Peer-reviewed</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Fuente 2</h3>
+          <p><strong>Nawrot, P., et al. (2003).</strong> &ldquo;Effects of caffeine on human health.&rdquo; <em>Food Additives &amp; Contaminants</em>, 20(1), 1-30.</p>
+          <div class="tags" style="margin-top:1rem;">
+            <span class="tag">Salud humana</span>
+            <span class="tag">Efectos adversos</span>
+            <span class="tag">Peer-reviewed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. METODOLOGIA -->
+  <section id="metodologia">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 05</p>
+      <h2 class="section-title">Metodologia</h2>
+      <p class="section-text">
+        El experimento consiste en medir el impacto de diferentes dosis de cafeina en el rendimiento fisico y el ritmo cardiaco durante sesiones de entrenamiento en el gimnasio. A continuacion se detalla el proceso paso a paso:
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Paso 1: Linea base</h4>
+          <p>Registrar el rendimiento y ritmo cardiaco en una sesion de entrenamiento sin consumir cafeina (dia de control).</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Paso 2: Dosis baja (~80mg)</h4>
+          <p>Consumir una taza de cafe regular 30 minutos antes del entrenamiento. Registrar ritmo cardiaco y rendimiento.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Paso 3: Dosis media (~160mg)</h4>
+          <p>Consumir dos tazas de cafe antes del entrenamiento. Registrar los mismos parametros.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Paso 4: Dosis alta (~240mg)</h4>
+          <p>Consumir tres tazas de cafe antes del entrenamiento. Registrar datos y comparar.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Paso 5: Analisis de resultados</h4>
+          <p>Comparar los datos recopilados entre las diferentes sesiones para identificar patrones y conclusiones.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <h3>Estado actual: Experimento en progreso</h3>
+        <p>Actualmente me encuentro en la mitad del experimento. Ya tengo datos de la linea base y las dosis bajas. Los resultados preliminares muestran diferencias interesantes en el ritmo cardiaco en reposo y durante el ejercicio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. RETOS PERSONALES -->
+  <section id="retos">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 06</p>
+      <h2 class="section-title">Retos Personales</h2>
+      <p class="section-text">
+        Como unico integrante de este proyecto, estos son los retos que he enfrentado y sigo enfrentando:
+      </p>
+
+      <div class="collapsible">
+        <div class="collapsible-item">
+          <div class="collapsible-header">
+            <span>Entender mis propios habitos</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>Me gusta mucho el cafe y lo tomo casi todos los dias. Uno de los retos mas grandes ha sido ser honesto conmigo mismo sobre cuanto consumo realmente y reconocer que, aunque sea algo comun, sigue siendo una sustancia con efectos en mi cuerpo.</p>
+          </div>
+        </div>
+        <div class="collapsible-item">
+          <div class="collapsible-header">
+            <span>Mantener el rigor en el experimento</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>No es facil controlar todas las variables. Factores como el sueno, la alimentacion del dia, y el estres pueden afectar los resultados. He tenido que ser muy disciplinado en mantener condiciones lo mas similares posible entre sesiones.</p>
+          </div>
+        </div>
+        <div class="collapsible-item">
+          <div class="collapsible-header">
+            <span>No caer en la presion social</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>En mi entorno es comun que la gente consuma bebidas energeticas o cantidades excesivas de cafe sin cuestionarlo. Parte del reto ha sido mantener una postura critica sin ser moralista, entendiendo que la clave esta en la informacion y la moderacion.</p>
+          </div>
+        </div>
+        <div class="collapsible-item">
+          <div class="collapsible-header">
+            <span>Hacer todo el proyecto solo</span>
+            <span class="arrow">&#9660;</span>
+          </div>
+          <div class="collapsible-body">
+            <p>Desde la investigacion hasta la programacion de esta pagina web, todo ha sido un esfuerzo individual. Esto ha sido un reto de organizacion y gestion del tiempo, pero tambien una oportunidad de aprender y demostrar mis habilidades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. ATRIBUTOS IB -->
+  <section id="ib">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 07</p>
+      <h2 class="section-title">Atributos del Perfil IB</h2>
+      <p class="section-text">
+        Este proyecto refleja varios atributos del perfil de la comunidad de aprendizaje del IB:
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">&#128269;</div>
+          <h3>Indagadores</h3>
+          <p>No me conforme con la informacion superficial. Disene un experimento personal para investigar de primera mano los efectos de la cafeina, buscando evidencia real en lugar de aceptar suposiciones.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128218;</div>
+          <h3>Informados e Instruidos</h3>
+          <p>Investigue en fuentes academicas para entender la ciencia detras de la cafeina. Cada afirmacion en este proyecto esta respaldada por informacion verificable y estudios cientificos.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128170;</div>
+          <h3>Audaces</h3>
+          <p>Proponer un experimento personal con mi propio cuerpo requirio valentía. Fui mas alla de lo que se esperaba, arriesgandome a probar algo diferente en lugar de hacer un trabajo convencional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ODS -->
+  <section id="ods">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 08</p>
+      <h2 class="section-title">Objetivos de Desarrollo Sostenible</h2>
+      <p class="section-text">
+        Este proyecto se alinea con dos Objetivos de Desarrollo Sostenible de las Naciones Unidas:
+      </p>
+
+      <div class="ods-card">
+        <div class="ods-number ods-3">3</div>
+        <div class="ods-content">
+          <h3>ODS 3: Salud y Bienestar</h3>
+          <p>El proyecto busca promover la salud y el bienestar al investigar como el consumo de cafeina afecta el cuerpo humano. Al generar datos reales sobre el impacto en el ritmo cardiaco y el rendimiento, contribuyo a que las personas puedan tomar decisiones mas informadas sobre su consumo diario de cafe y otras sustancias.</p>
+        </div>
+      </div>
+      <div class="ods-card">
+        <div class="ods-number ods-4">4</div>
+        <div class="ods-content">
+          <h3>ODS 4: Educacion de Calidad</h3>
+          <p>Este proyecto es en si mismo una herramienta educativa. A traves de la pagina web interactiva, el quiz y la calculadora de cafeina, busco que otros jovenes aprendan sobre el consumo responsable de sustancias de una manera dinamica y accesible, no con un texto aburrido, sino con una experiencia real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. RIESGOS -->
+  <section id="riesgos">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 09</p>
+      <h2 class="section-title">Posibles Riesgos del Proyecto</h2>
+
+      <ul class="risk-list">
+        <li>
+          <div class="risk-icon risk-high">&#9888;</div>
+          <div>
+            <h4>Efectos secundarios de la cafeina en dosis altas</h4>
+            <p>Consumir dosis elevadas de cafeina puede provocar taquicardia, ansiedad o malestar. Se mitiga limitando la dosis maxima a 240mg y monitoreando constantemente el ritmo cardiaco.</p>
+          </div>
+        </li>
+        <li>
+          <div class="risk-icon risk-med">&#9888;</div>
+          <div>
+            <h4>Variables no controladas</h4>
+            <p>Factores como el sueno, la alimentacion y el estres pueden alterar los resultados. Se mitiga intentando mantener condiciones similares en cada sesion de prueba.</p>
+          </div>
+        </li>
+        <li>
+          <div class="risk-icon risk-med">&#9888;</div>
+          <div>
+            <h4>Sesgo de confirmacion</h4>
+            <p>Podria interpretar los datos de manera que confirmen lo que espero encontrar. Se mitiga registrando datos objetivos (BPM, repeticiones, peso) en lugar de percepciones subjetivas.</p>
+          </div>
+        </li>
+        <li>
+          <div class="risk-icon risk-low">&#9888;</div>
+          <div>
+            <h4>Problemas tecnicos con la pagina web</h4>
+            <p>Al desarrollar la pagina desde cero en HTML/CSS/JS, podrian surgir errores o problemas de compatibilidad. Se mitiga probando en diferentes navegadores antes de la entrega.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 10. RECURSOS -->
+  <section id="recursos">
+    <div class="container fade-in">
+      <p class="section-number">Seccion 10</p>
+      <h2 class="section-title">Recursos a Utilizar</h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">&#9749;</div>
+          <h3>Cafe (diferentes dosis)</h3>
+          <p>Cafe negro preparado en casa, midiendo la cantidad con precision para garantizar consistencia entre pruebas.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9201;</div>
+          <h3>Reloj/monitor cardiaco</h3>
+          <p>Para medir el ritmo cardiaco antes, durante y despues del ejercicio en cada sesion.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128221;</div>
+          <h3>Registro de datos</h3>
+          <p>Hoja de calculo para documentar BPM, repeticiones, peso levantado y sensaciones en cada sesion.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128187;</div>
+          <h3>Herramientas de desarrollo</h3>
+          <p>HTML, CSS y JavaScript para construir esta pagina web. GitHub Pages para publicarla y hacerla accesible.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128218;</div>
+          <h3>Fuentes academicas</h3>
+          <p>Articulos cientificos de Google Academico sobre cafeina, rendimiento deportivo y salud cardiovascular.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#127947;</div>
+          <h3>Gimnasio</h3>
+          <p>Acceso al gimnasio para realizar las sesiones de entrenamiento controladas bajo diferentes dosis de cafeina.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE: QUIZ -->
+  <section id="interactivo" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff;">
+    <div class="container fade-in">
+      <p class="section-number" style="color: #d4a574;">Seccion Interactiva</p>
+      <h2 class="section-title" style="color: #fff;">Quiz: Mitos y Verdades sobre la Cafeina</h2>
+      <p style="color: #a0aec0; margin-bottom: 1rem;">Pon a prueba tus conocimientos sobre la cafeina y el consumo de sustancias.</p>
+
+      <div class="quiz-container" id="quizContainer">
+        <div id="quizContent">
+          <p class="quiz-counter" id="quizCounter"></p>
+          <p class="quiz-question" id="quizQuestion"></p>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-feedback" id="quizFeedback"></div>
+          <button class="quiz-next" id="quizNext" onclick="nextQuestion()">Siguiente</button>
+        </div>
+        <div class="quiz-result" id="quizResult">
+          <h3 id="resultTitle"></h3>
+          <p id="resultText"></p>
+          <button class="quiz-restart" onclick="restartQuiz()">Reintentar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE: CALCULATOR -->
+  <section id="calculadora">
+    <div class="container fade-in">
+      <p class="section-number">Herramienta Interactiva</p>
+      <h2 class="section-title">Calculadora de Cafeina Diaria</h2>
+      <p class="section-text">Selecciona lo que consumes y descubre cuanta cafeina ingieres al dia. La dosis recomendada para adultos es de maximo <strong>400mg</strong>.</p>
+
+      <div class="calc-container">
+        <h3>Selecciona tu bebida</h3>
+        <div class="calc-grid" id="calcGrid">
+          <div class="calc-item" data-mg="95" onclick="selectDrink(this)">
+            <div class="drink-icon">&#9749;</div>
+            <div class="drink-name">Cafe filtrado</div>
+            <div class="drink-mg">~95mg por taza</div>
+          </div>
+          <div class="calc-item" data-mg="63" onclick="selectDrink(this)">
+            <div class="drink-icon">&#9749;</div>
+            <div class="drink-name">Espresso</div>
+            <div class="drink-mg">~63mg por shot</div>
+          </div>
+          <div class="calc-item" data-mg="47" onclick="selectDrink(this)">
+            <div class="drink-icon">&#127861;</div>
+            <div class="drink-name">Te negro</div>
+            <div class="drink-mg">~47mg por taza</div>
+          </div>
+          <div class="calc-item" data-mg="80" onclick="selectDrink(this)">
+            <div class="drink-icon">&#9889;</div>
+            <div class="drink-name">Bebida energetica</div>
+            <div class="drink-mg">~80mg por lata</div>
+          </div>
+          <div class="calc-item" data-mg="34" onclick="selectDrink(this)">
+            <div class="drink-icon">&#127864;</div>
+            <div class="drink-name">Coca-Cola</div>
+            <div class="drink-mg">~34mg por lata</div>
+          </div>
+          <div class="calc-item" data-mg="20" onclick="selectDrink(this)">
+            <div class="drink-icon">&#127851;</div>
+            <div class="drink-name">Chocolate oscuro</div>
+            <div class="drink-mg">~20mg por barra</div>
+          </div>
+        </div>
+        <div class="calc-quantity">
+          <label for="calcQty">Cantidad:</label>
+          <input type="number" id="calcQty" value="1" min="0" max="20" onchange="updateCalc()" oninput="updateCalc()">
+          <span id="calcUnit" style="color:#718096;">unidades</span>
+        </div>
+        <div class="calc-result-box">
+          <p class="total-label">Tu consumo estimado de cafeina</p>
+          <p class="total-mg" id="calcTotal">0 mg</p>
+          <div class="calc-bar-container">
+            <div class="calc-bar" id="calcBar"></div>
+          </div>
+          <p class="recommendation" id="calcRec">Selecciona una bebida para comenzar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); color: #fff; text-align: center;">
+    <div class="container fade-in">
+      <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: #d4a574; margin-bottom: 1rem;">Reflexion Final</h2>
+      <p style="font-size: 1.15rem; color: #cbd5e0; max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.8;">
+        No se trata de dejar el cafe ni de tenerle miedo a las sustancias. Se trata de <strong style="color:#fff;">entender</strong> lo que ponemos en nuestro cuerpo, <strong style="color:#fff;">medir</strong> sus efectos y <strong style="color:#fff;">decidir</strong> con informacion. Ese es el verdadero poder: la decision informada.
+      </p>
+      <p style="color: #718096; font-size: 0.95rem;">
+        &laquo;Conocer es el primer paso para elegir bien.&raquo;
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-title">Proyecto de Servicio - Consumo de Sustancias</p>
+    <p>Pablo Rueda &mdash; 2026</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #4a5568;">Pagina desarrollada con HTML, CSS y JavaScript</p>
+  </footer>
+
+  <script>
+    // ===== PROGRESS BAR =====
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    });
+
+    // ===== COLLAPSIBLES =====
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        item.classList.toggle('open');
+      });
+    });
+
+    // ===== FADE IN ON SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ===== ACTIVE NAV =====
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) current = section.getAttribute('id');
+      });
+      document.querySelectorAll('nav ul li a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+      });
+    });
+
+    // ===== QUIZ =====
+    const quizData = [
+      {
+        question: "La cafeina es considerada una droga psicoactiva. Verdadero o falso?",
+        options: ["Verdadero", "Falso"],
+        correct: 0,
+        explanation: "Correcto. La cafeina es la sustancia psicoactiva mas consumida en el mundo. Altera el funcionamiento del sistema nervioso central al bloquear los receptores de adenosina."
+      },
+      {
+        question: "Cual es la dosis maxima diaria de cafeina recomendada para un adulto sano?",
+        options: ["100mg", "200mg", "400mg", "800mg"],
+        correct: 2,
+        explanation: "La FDA y la Autoridad Europea de Seguridad Alimentaria recomiendan un maximo de 400mg de cafeina al dia para adultos sanos, equivalente a unas 4 tazas de cafe."
+      },
+      {
+        question: "El cafe descafeinado no contiene nada de cafeina. Verdadero o falso?",
+        options: ["Verdadero", "Falso"],
+        correct: 1,
+        explanation: "Falso. El cafe descafeinado aun contiene entre 2-15mg de cafeina por taza. El proceso de descafeinado elimina la mayor parte, pero no toda."
+      },
+      {
+        question: "Cuanto tiempo tarda la cafeina en alcanzar su efecto maximo en el cuerpo?",
+        options: ["5 minutos", "15-30 minutos", "30-60 minutos", "2 horas"],
+        correct: 2,
+        explanation: "La cafeina alcanza su concentracion maxima en sangre entre 30 y 60 minutos despues de consumirla. Por eso se recomienda tomar cafe 30 min antes de entrenar."
+      },
+      {
+        question: "Cual de estas sustancias NO contiene cafeina?",
+        options: ["Chocolate oscuro", "Te verde", "Jugo de naranja natural", "Coca-Cola"],
+        correct: 2,
+        explanation: "El jugo de naranja natural no contiene cafeina. El chocolate, el te verde y la Coca-Cola si contienen cafeina en diferentes cantidades."
+      },
+      {
+        question: "La cafeina puede generar dependencia fisica. Verdadero o falso?",
+        options: ["Verdadero", "Falso"],
+        correct: 0,
+        explanation: "Verdadero. El consumo regular de cafeina puede generar tolerancia y dependencia. Al dejar de consumirla abruptamente, pueden aparecer sintomas de abstinencia como dolor de cabeza, fatiga e irritabilidad."
+      },
+      {
+        question: "Que efecto tiene la cafeina sobre el ritmo cardiaco?",
+        options: [
+          "Siempre lo disminuye",
+          "No tiene ningun efecto",
+          "Puede aumentarlo, especialmente en dosis altas",
+          "Solo afecta a mayores de 50 anos"
+        ],
+        correct: 2,
+        explanation: "La cafeina es un estimulante que puede aumentar el ritmo cardiaco, especialmente en dosis altas o en personas sensibles. Este es uno de los parametros que mido en mi experimento."
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const q = quizData[currentQ];
+      document.getElementById('quizCounter').textContent = `Pregunta ${currentQ + 1} de ${quizData.length}`;
+      document.getElementById('quizQuestion').textContent = q.question;
+      document.getElementById('quizFeedback').className = 'quiz-feedback';
+      document.getElementById('quizFeedback').classList.remove('show');
+      document.getElementById('quizNext').style.display = 'none';
+
+      const optionsEl = document.getElementById('quizOptions');
+      optionsEl.innerHTML = '';
+      q.options.forEach((opt, i) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-option';
+        div.textContent = opt;
+        div.addEventListener('click', () => selectAnswer(i, div));
+        optionsEl.appendChild(div);
+      });
+    }
+
+    function selectAnswer(index, el) {
+      const q = quizData[currentQ];
+      const options = document.querySelectorAll('.quiz-option');
+      options.forEach(o => o.classList.add('disabled'));
+
+      const feedback = document.getElementById('quizFeedback');
+      if (index === q.correct) {
+        el.classList.add('correct');
+        score++;
+        feedback.className = 'quiz-feedback correct-fb show';
+      } else {
+        el.classList.add('incorrect');
+        options[q.correct].classList.add('correct');
+        feedback.className = 'quiz-feedback incorrect-fb show';
+      }
+      feedback.textContent = q.explanation;
+
+      if (currentQ < quizData.length - 1) {
+        document.getElementById('quizNext').style.display = 'inline-block';
+      } else {
+        setTimeout(showResult, 1500);
+      }
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      loadQuestion();
+    }
+
+    function showResult() {
+      document.getElementById('quizContent').style.display = 'none';
+      const result = document.getElementById('quizResult');
+      result.style.display = 'block';
+      const pct = Math.round((score / quizData.length) * 100);
+
+      let title, text;
+      if (pct >= 80) {
+        title = `Excelente: ${score}/${quizData.length}`;
+        text = 'Tienes un gran conocimiento sobre la cafeina y el consumo de sustancias. Sigue informandote y compartiendo lo que sabes.';
+      } else if (pct >= 50) {
+        title = `Bien: ${score}/${quizData.length}`;
+        text = 'Sabes bastante, pero aun hay datos interesantes por descubrir. Revisa las secciones anteriores para aprender mas.';
+      } else {
+        title = `${score}/${quizData.length}`;
+        text = 'Hay mucho por aprender sobre las sustancias que consumimos a diario. Te invito a explorar toda la pagina para descubrir datos importantes.';
+      }
+      document.getElementById('resultTitle').textContent = title;
+      document.getElementById('resultText').textContent = text;
+    }
+
+    function restartQuiz() {
+      currentQ = 0;
+      score = 0;
+      document.getElementById('quizContent').style.display = 'block';
+      document.getElementById('quizResult').style.display = 'none';
+      loadQuestion();
+    }
+
+    loadQuestion();
+
+    // ===== CAFFEINE CALCULATOR =====
+    let selectedMg = 0;
+
+    function selectDrink(el) {
+      document.querySelectorAll('.calc-item').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedMg = parseInt(el.dataset.mg);
+      updateCalc();
+    }
+
+    function updateCalc() {
+      const qty = parseInt(document.getElementById('calcQty').value) || 0;
+      const total = selectedMg * qty;
+      document.getElementById('calcTotal').textContent = total + ' mg';
+
+      const pct = Math.min((total / 400) * 100, 100);
+      const bar = document.getElementById('calcBar');
+      bar.style.width = pct + '%';
+
+      if (total === 0) {
+        bar.style.background = '#48bb78';
+        document.getElementById('calcRec').textContent = 'Selecciona una bebida para comenzar';
+      } else if (total <= 200) {
+        bar.style.background = '#48bb78';
+        document.getElementById('calcRec').textContent = 'Consumo moderado. Estas dentro del rango seguro.';
+      } else if (total <= 400) {
+        bar.style.background = '#ecc94b';
+        document.getElementById('calcRec').textContent = 'Cuidado, te acercas al limite recomendado de 400mg diarios.';
+      } else {
+        bar.style.background = '#fc8181';
+        document.getElementById('calcRec').textContent = 'Excedes el limite recomendado. Considera reducir tu consumo.';
+      }
+    }
+
+    // ===== CLOSE MOBILE NAV ON LINK CLICK =====
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('nav ul').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
