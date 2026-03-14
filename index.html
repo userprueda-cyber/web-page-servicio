@@ -52,7 +52,8 @@
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+      background: linear-gradient(rgba(26, 26, 46, 0.82), rgba(15, 52, 96, 0.85)),
+                  url('https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
       position: relative; overflow: hidden; text-align: center;
       padding: 2rem;
     }
@@ -67,6 +68,14 @@
     @keyframes heroFloat {
       0%, 100% { transform: translate(0, 0); }
       50% { transform: translate(-2%, -1%); }
+    }
+
+    /* ===== SECTION IMAGES ===== */
+    .section-img {
+      width: 100%; max-height: 350px;
+      object-fit: cover; border-radius: 16px;
+      margin: 2rem 0;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
     }
     .hero-content { position: relative; z-index: 1; max-width: 800px; }
     .hero h1 {
@@ -522,6 +531,8 @@
         Este proyecto se enfoca especificamente en la <strong>cafeina</strong>: como funciona, que le hace a nuestro cuerpo, y si realmente mejora o perjudica nuestro rendimiento. La idea es ir mas alla de la informacion superficial y entender, con datos propios, que pasa cuando variamos la dosis de cafe que consumimos.
       </p>
 
+      <img class="section-img" src="https://images.pexels.com/photos/585753/pexels-photo-585753.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Granos de café espresso" loading="lazy">
+
       <div class="cards">
         <div class="card">
           <div class="card-icon"><i class="fa-solid fa-mug-hot"></i></div>
@@ -553,6 +564,8 @@
       <p class="section-text">
         Este proyecto nace de una curiosidad personal. Como alguien que disfruta del cafe y entrena regularmente, quise entender de manera concreta y medible como la cafeina afecta mi rendimiento fisico. En lugar de simplemente investigar en internet, decidi disenar un experimento propio: probar diferentes dosis de cafe antes de entrenar y medir los cambios en mi ritmo cardiaco y rendimiento.
       </p>
+
+      <img class="section-img" src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Taza de café con vapor" loading="lazy">
 
       <div class="quote-block">
         <p>&laquo;La cafeina es la sustancia psicoactiva mas consumida del mundo. Mas del 80% de la poblacion mundial la consume diariamente en alguna forma.&raquo;</p>
@@ -673,6 +686,8 @@
           <p>Comparar los datos recopilados entre las diferentes sesiones para identificar patrones y conclusiones.</p>
         </div>
       </div>
+
+      <img class="section-img" src="https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Entrenamiento en gimnasio" loading="lazy">
 
       <div class="highlight-box">
         <h3>Estado actual: Experimento en progreso</h3>
