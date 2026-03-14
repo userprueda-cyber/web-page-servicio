@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consumo de Sustancias - Proyecto de Servicio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -141,7 +142,7 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.1);
     }
     .card-icon {
-      font-size: 2.5rem; margin-bottom: 1rem;
+      font-size: 2.5rem; margin-bottom: 1rem; color: #d4a574;
     }
     .card h3 {
       font-size: 1.15rem; font-weight: 700; color: #1a1a2e;
@@ -313,7 +314,7 @@
     .calc-item:hover, .calc-item.selected {
       border-color: #d4a574; background: #faf6f1;
     }
-    .calc-item .drink-icon { font-size: 2rem; margin-bottom: 0.4rem; }
+    .calc-item .drink-icon { font-size: 2rem; margin-bottom: 0.4rem; color: #d4a574; }
     .calc-item .drink-name { font-weight: 600; color: #1a1a2e; font-size: 0.9rem; }
     .calc-item .drink-mg { color: #718096; font-size: 0.8rem; }
     .calc-quantity {
@@ -488,7 +489,7 @@
       <li><a href="#introduccion">Intro</a></li>
       <li><a href="#objetivo">Objetivo</a></li>
       <li><a href="#fuentes">Fuentes</a></li>
-      <li><a href="#metodologia">Metodologia</a></li>
+      <li><a href="#metodologia">Metodología</a></li>
       <li><a href="#retos">Retos</a></li>
       <li><a href="#ib">IB</a></li>
       <li><a href="#ods">ODS</a></li>
@@ -503,7 +504,7 @@
   <section class="hero" id="inicio">
     <div class="hero-content">
       <h1>Consumo de <span>Sustancias</span></h1>
-      <p class="subtitle">Un estudio sobre los efectos de la cafeina en el rendimiento fisico y la salud</p>
+      <p class="subtitle">Un estudio sobre los efectos de la cafeína en el rendimiento físico y la salud</p>
       <p class="author">Pablo Rueda &mdash; Proyecto de Servicio</p>
       <a href="#tema" class="hero-cta">Explorar el proyecto</a>
     </div>
@@ -512,7 +513,7 @@
   <!-- 1. TEMA -->
   <section id="tema">
     <div class="container fade-in">
-      <p class="section-number">Seccion 01</p>
+      <p class="section-number">Sección 01</p>
       <h2 class="section-title">El tema: Consumo de Sustancias</h2>
       <p class="section-text">
         El consumo de sustancias abarca todas aquellas substancias que alteran el funcionamiento normal de nuestro cuerpo y mente. Desde las drogas ilegales y el alcohol hasta sustancias que consumimos a diario sin pensarlo mucho, como el <strong>cafe</strong>. La cafeina es la droga psicoactiva mas consumida en el mundo, y aunque es legal y socialmente aceptada, tiene efectos reales en nuestro sistema nervioso, ritmo cardiaco y rendimiento fisico.
@@ -523,17 +524,17 @@
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">&#9749;</div>
-          <h3>Cafeina</h3>
+          <div class="card-icon"><i class="fa-solid fa-mug-hot"></i></div>
+          <h3>Cafeína</h3>
           <p>Estimulante del sistema nervioso central presente en cafe, te, bebidas energeticas y chocolate. Bloquea los receptores de adenosina, manteniendote alerta.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#9888;</div>
+          <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
           <h3>Riesgo oculto</h3>
           <p>Aunque es legal, el exceso de cafeina puede causar ansiedad, insomnio, taquicardia y dependencia. La dosis segura para adultos es de hasta 400mg diarios.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#128200;</div>
+          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
           <h3>El experimento</h3>
           <p>Estoy midiendo como diferentes dosis de cafe afectan mi rendimiento y ritmo cardiaco en el gimnasio, con datos reales y medibles.</p>
         </div>
@@ -544,10 +545,10 @@
   <!-- 2. INTRODUCCION -->
   <section id="introduccion">
     <div class="container fade-in">
-      <p class="section-number">Seccion 02</p>
-      <h2 class="section-title">Introduccion del Proyecto</h2>
+      <p class="section-number">Sección 02</p>
+      <h2 class="section-title">Introducción del Proyecto</h2>
       <p class="section-text">
-        Vivimos en una sociedad donde el consumo de sustancias esta normalizado de muchas formas. Desde el trago social hasta el cafe de la manana, estas sustancias forman parte de nuestra rutina. Sin embargo, pocas veces nos detenemos a preguntar: <strong>&iquest;realmente sabemos lo que le estamos haciendo a nuestro cuerpo?</strong>
+        Vivimos en una sociedad donde el consumo de sustancias esta normalizado de muchas formas. Desde el trago social hasta el café de la mañana, estas sustancias forman parte de nuestra rutina. Sin embargo, pocas veces nos detenemos a preguntar: <strong>&iquest;realmente sabemos lo que le estamos haciendo a nuestro cuerpo?</strong>
       </p>
       <p class="section-text">
         Este proyecto nace de una curiosidad personal. Como alguien que disfruta del cafe y entrena regularmente, quise entender de manera concreta y medible como la cafeina afecta mi rendimiento fisico. En lugar de simplemente investigar en internet, decidi disenar un experimento propio: probar diferentes dosis de cafe antes de entrenar y medir los cambios en mi ritmo cardiaco y rendimiento.
@@ -555,7 +556,7 @@
 
       <div class="quote-block">
         <p>&laquo;La cafeina es la sustancia psicoactiva mas consumida del mundo. Mas del 80% de la poblacion mundial la consume diariamente en alguna forma.&raquo;</p>
-        <cite>&mdash; Organizacion Mundial de la Salud</cite>
+        <cite>&mdash; Organización Mundial de la Salud</cite>
       </div>
 
       <p class="section-text">
@@ -567,7 +568,7 @@
   <!-- 3. OBJETIVO -->
   <section id="objetivo">
     <div class="container fade-in">
-      <p class="section-number">Seccion 03</p>
+      <p class="section-number">Sección 03</p>
       <h2 class="section-title">Objetivo General</h2>
 
       <div class="highlight-box">
@@ -593,7 +594,7 @@
             <span class="arrow">&#9660;</span>
           </div>
           <div class="collapsible-body">
-            <p>Para generar conciencia entre jovenes sobre el consumo responsable de sustancias. No se trata de prohibir el cafe, sino de entender cuanto es demasiado y como afecta nuestro desempeno diario.</p>
+            <p>Para generar conciencia entre jovenes sobre el consumo responsable de sustancias. No se trata de prohibir el cafe, sino de entender cuanto es demasiado y como afecta nuestro desempeño diario.</p>
           </div>
         </div>
         <div class="collapsible-item">
@@ -612,8 +613,8 @@
   <!-- 4. FUENTES -->
   <section id="fuentes">
     <div class="container fade-in">
-      <p class="section-number">Seccion 04</p>
-      <h2 class="section-title">Fuentes Academicas</h2>
+      <p class="section-number">Sección 04</p>
+      <h2 class="section-title">Fuentes Académicas</h2>
       <p class="section-text">
         Las siguientes fuentes academicas respaldan la investigacion de este proyecto. Fueron consultadas a traves de <strong>Google Academico</strong> para garantizar su rigor cientifico.
       </p>
@@ -644,8 +645,8 @@
   <!-- 5. METODOLOGIA -->
   <section id="metodologia">
     <div class="container fade-in">
-      <p class="section-number">Seccion 05</p>
-      <h2 class="section-title">Metodologia</h2>
+      <p class="section-number">Sección 05</p>
+      <h2 class="section-title">Metodología</h2>
       <p class="section-text">
         El experimento consiste en medir el impacto de diferentes dosis de cafeina en el rendimiento fisico y el ritmo cardiaco durante sesiones de entrenamiento en el gimnasio. A continuacion se detalla el proceso paso a paso:
       </p>
@@ -683,7 +684,7 @@
   <!-- 6. RETOS PERSONALES -->
   <section id="retos">
     <div class="container fade-in">
-      <p class="section-number">Seccion 06</p>
+      <p class="section-number">Sección 06</p>
       <h2 class="section-title">Retos Personales</h2>
       <p class="section-text">
         Como unico integrante de este proyecto, estos son los retos que he enfrentado y sigo enfrentando:
@@ -705,7 +706,7 @@
             <span class="arrow">&#9660;</span>
           </div>
           <div class="collapsible-body">
-            <p>No es facil controlar todas las variables. Factores como el sueno, la alimentacion del dia, y el estres pueden afectar los resultados. He tenido que ser muy disciplinado en mantener condiciones lo mas similares posible entre sesiones.</p>
+            <p>No es facil controlar todas las variables. Factores como el sueño, la alimentacion del dia, y el estres pueden afectar los resultados. He tenido que ser muy disciplinado en mantener condiciones lo mas similares posible entre sesiones.</p>
           </div>
         </div>
         <div class="collapsible-item">
@@ -733,7 +734,7 @@
   <!-- 7. ATRIBUTOS IB -->
   <section id="ib">
     <div class="container fade-in">
-      <p class="section-number">Seccion 07</p>
+      <p class="section-number">Sección 07</p>
       <h2 class="section-title">Atributos del Perfil IB</h2>
       <p class="section-text">
         Este proyecto refleja varios atributos del perfil de la comunidad de aprendizaje del IB:
@@ -741,17 +742,17 @@
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">&#128269;</div>
+          <div class="card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
           <h3>Indagadores</h3>
-          <p>No me conforme con la informacion superficial. Disene un experimento personal para investigar de primera mano los efectos de la cafeina, buscando evidencia real en lugar de aceptar suposiciones.</p>
+          <p>No me conforme con la informacion superficial. Diseñé un experimento personal para investigar de primera mano los efectos de la cafeina, buscando evidencia real en lugar de aceptar suposiciones.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#128218;</div>
+          <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
           <h3>Informados e Instruidos</h3>
           <p>Investigue en fuentes academicas para entender la ciencia detras de la cafeina. Cada afirmacion en este proyecto esta respaldada por informacion verificable y estudios cientificos.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#128170;</div>
+          <div class="card-icon"><i class="fa-solid fa-hand-fist"></i></div>
           <h3>Audaces</h3>
           <p>Proponer un experimento personal con mi propio cuerpo requirio valentía. Fui mas alla de lo que se esperaba, arriesgandome a probar algo diferente en lugar de hacer un trabajo convencional.</p>
         </div>
@@ -762,7 +763,7 @@
   <!-- 8. ODS -->
   <section id="ods">
     <div class="container fade-in">
-      <p class="section-number">Seccion 08</p>
+      <p class="section-number">Sección 08</p>
       <h2 class="section-title">Objetivos de Desarrollo Sostenible</h2>
       <p class="section-text">
         Este proyecto se alinea con dos Objetivos de Desarrollo Sostenible de las Naciones Unidas:
@@ -778,7 +779,7 @@
       <div class="ods-card">
         <div class="ods-number ods-4">4</div>
         <div class="ods-content">
-          <h3>ODS 4: Educacion de Calidad</h3>
+          <h3>ODS 4: Educación de Calidad</h3>
           <p>Este proyecto es en si mismo una herramienta educativa. A traves de la pagina web interactiva, el quiz y la calculadora de cafeina, busco que otros jovenes aprendan sobre el consumo responsable de sustancias de una manera dinamica y accesible, no con un texto aburrido, sino con una experiencia real.</p>
         </div>
       </div>
@@ -788,33 +789,33 @@
   <!-- 9. RIESGOS -->
   <section id="riesgos">
     <div class="container fade-in">
-      <p class="section-number">Seccion 09</p>
+      <p class="section-number">Sección 09</p>
       <h2 class="section-title">Posibles Riesgos del Proyecto</h2>
 
       <ul class="risk-list">
         <li>
-          <div class="risk-icon risk-high">&#9888;</div>
+          <div class="risk-icon risk-high"><i class="fa-solid fa-circle-exclamation"></i></div>
           <div>
             <h4>Efectos secundarios de la cafeina en dosis altas</h4>
             <p>Consumir dosis elevadas de cafeina puede provocar taquicardia, ansiedad o malestar. Se mitiga limitando la dosis maxima a 240mg y monitoreando constantemente el ritmo cardiaco.</p>
           </div>
         </li>
         <li>
-          <div class="risk-icon risk-med">&#9888;</div>
+          <div class="risk-icon risk-med"><i class="fa-solid fa-circle-exclamation"></i></div>
           <div>
             <h4>Variables no controladas</h4>
-            <p>Factores como el sueno, la alimentacion y el estres pueden alterar los resultados. Se mitiga intentando mantener condiciones similares en cada sesion de prueba.</p>
+            <p>Factores como el sueño, la alimentacion y el estres pueden alterar los resultados. Se mitiga intentando mantener condiciones similares en cada sesion de prueba.</p>
           </div>
         </li>
         <li>
-          <div class="risk-icon risk-med">&#9888;</div>
+          <div class="risk-icon risk-med"><i class="fa-solid fa-circle-exclamation"></i></div>
           <div>
             <h4>Sesgo de confirmacion</h4>
             <p>Podria interpretar los datos de manera que confirmen lo que espero encontrar. Se mitiga registrando datos objetivos (BPM, repeticiones, peso) en lugar de percepciones subjetivas.</p>
           </div>
         </li>
         <li>
-          <div class="risk-icon risk-low">&#9888;</div>
+          <div class="risk-icon risk-low"><i class="fa-solid fa-circle-info"></i></div>
           <div>
             <h4>Problemas tecnicos con la pagina web</h4>
             <p>Al desarrollar la pagina desde cero en HTML/CSS/JS, podrian surgir errores o problemas de compatibilidad. Se mitiga probando en diferentes navegadores antes de la entrega.</p>
@@ -827,37 +828,37 @@
   <!-- 10. RECURSOS -->
   <section id="recursos">
     <div class="container fade-in">
-      <p class="section-number">Seccion 10</p>
+      <p class="section-number">Sección 10</p>
       <h2 class="section-title">Recursos a Utilizar</h2>
 
       <div class="cards">
         <div class="card">
-          <div class="card-icon">&#9749;</div>
-          <h3>Cafe (diferentes dosis)</h3>
+          <div class="card-icon"><i class="fa-solid fa-mug-hot"></i></div>
+          <h3>Café (diferentes dosis)</h3>
           <p>Cafe negro preparado en casa, midiendo la cantidad con precision para garantizar consistencia entre pruebas.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#9201;</div>
+          <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
           <h3>Reloj/monitor cardiaco</h3>
           <p>Para medir el ritmo cardiaco antes, durante y despues del ejercicio en cada sesion.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#128221;</div>
+          <div class="card-icon"><i class="fa-solid fa-clipboard-list"></i></div>
           <h3>Registro de datos</h3>
           <p>Hoja de calculo para documentar BPM, repeticiones, peso levantado y sensaciones en cada sesion.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#128187;</div>
+          <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
           <h3>Herramientas de desarrollo</h3>
           <p>HTML, CSS y JavaScript para construir esta pagina web. GitHub Pages para publicarla y hacerla accesible.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#128218;</div>
+          <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
           <h3>Fuentes academicas</h3>
           <p>Articulos cientificos de Google Academico sobre cafeina, rendimiento deportivo y salud cardiovascular.</p>
         </div>
         <div class="card">
-          <div class="card-icon">&#127947;</div>
+          <div class="card-icon"><i class="fa-solid fa-dumbbell"></i></div>
           <h3>Gimnasio</h3>
           <p>Acceso al gimnasio para realizar las sesiones de entrenamiento controladas bajo diferentes dosis de cafeina.</p>
         </div>
@@ -868,8 +869,8 @@
   <!-- INTERACTIVE: QUIZ -->
   <section id="interactivo" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff;">
     <div class="container fade-in">
-      <p class="section-number" style="color: #d4a574;">Seccion Interactiva</p>
-      <h2 class="section-title" style="color: #fff;">Quiz: Mitos y Verdades sobre la Cafeina</h2>
+      <p class="section-number" style="color: #d4a574;">Sección Interactiva</p>
+      <h2 class="section-title" style="color: #fff;">Quiz: Mitos y Verdades sobre la Cafeína</h2>
       <p style="color: #a0aec0; margin-bottom: 1rem;">Pon a prueba tus conocimientos sobre la cafeina y el consumo de sustancias.</p>
 
       <div class="quiz-container" id="quizContainer">
@@ -893,39 +894,39 @@
   <section id="calculadora">
     <div class="container fade-in">
       <p class="section-number">Herramienta Interactiva</p>
-      <h2 class="section-title">Calculadora de Cafeina Diaria</h2>
+      <h2 class="section-title">Calculadora de Cafeína Diaria</h2>
       <p class="section-text">Selecciona lo que consumes y descubre cuanta cafeina ingieres al dia. La dosis recomendada para adultos es de maximo <strong>400mg</strong>.</p>
 
       <div class="calc-container">
         <h3>Selecciona tu bebida</h3>
         <div class="calc-grid" id="calcGrid">
           <div class="calc-item" data-mg="95" onclick="selectDrink(this)">
-            <div class="drink-icon">&#9749;</div>
+            <div class="drink-icon"><i class="fa-solid fa-mug-hot"></i></div>
             <div class="drink-name">Cafe filtrado</div>
             <div class="drink-mg">~95mg por taza</div>
           </div>
           <div class="calc-item" data-mg="63" onclick="selectDrink(this)">
-            <div class="drink-icon">&#9749;</div>
+            <div class="drink-icon"><i class="fa-solid fa-mug-saucer"></i></div>
             <div class="drink-name">Espresso</div>
             <div class="drink-mg">~63mg por shot</div>
           </div>
           <div class="calc-item" data-mg="47" onclick="selectDrink(this)">
-            <div class="drink-icon">&#127861;</div>
+            <div class="drink-icon"><i class="fa-solid fa-leaf"></i></div>
             <div class="drink-name">Te negro</div>
             <div class="drink-mg">~47mg por taza</div>
           </div>
           <div class="calc-item" data-mg="80" onclick="selectDrink(this)">
-            <div class="drink-icon">&#9889;</div>
+            <div class="drink-icon"><i class="fa-solid fa-bolt"></i></div>
             <div class="drink-name">Bebida energetica</div>
             <div class="drink-mg">~80mg por lata</div>
           </div>
           <div class="calc-item" data-mg="34" onclick="selectDrink(this)">
-            <div class="drink-icon">&#127864;</div>
+            <div class="drink-icon"><i class="fa-solid fa-wine-bottle"></i></div>
             <div class="drink-name">Coca-Cola</div>
             <div class="drink-mg">~34mg por lata</div>
           </div>
           <div class="calc-item" data-mg="20" onclick="selectDrink(this)">
-            <div class="drink-icon">&#127851;</div>
+            <div class="drink-icon"><i class="fa-solid fa-candy-cane"></i></div>
             <div class="drink-name">Chocolate oscuro</div>
             <div class="drink-mg">~20mg por barra</div>
           </div>
@@ -950,7 +951,7 @@
   <!-- REFLECTION -->
   <section style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); color: #fff; text-align: center;">
     <div class="container fade-in">
-      <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: #d4a574; margin-bottom: 1rem;">Reflexion Final</h2>
+      <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: #d4a574; margin-bottom: 1rem;">Reflexión Final</h2>
       <p style="font-size: 1.15rem; color: #cbd5e0; max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.8;">
         No se trata de dejar el cafe ni de tenerle miedo a las sustancias. Se trata de <strong style="color:#fff;">entender</strong> lo que ponemos en nuestro cuerpo, <strong style="color:#fff;">medir</strong> sus efectos y <strong style="color:#fff;">decidir</strong> con informacion. Ese es el verdadero poder: la decision informada.
       </p>
@@ -1018,10 +1019,10 @@
         explanation: "Correcto. La cafeina es la sustancia psicoactiva mas consumida en el mundo. Altera el funcionamiento del sistema nervioso central al bloquear los receptores de adenosina."
       },
       {
-        question: "Cual es la dosis maxima diaria de cafeina recomendada para un adulto sano?",
+        question: "¿Cuál es la dosis maxima diaria de cafeina recomendada para un adulto sano?",
         options: ["100mg", "200mg", "400mg", "800mg"],
         correct: 2,
-        explanation: "La FDA y la Autoridad Europea de Seguridad Alimentaria recomiendan un maximo de 400mg de cafeina al dia para adultos sanos, equivalente a unas 4 tazas de cafe."
+        explanation: "La FDA y la Autoridad Europea de Seguridad Alimentaria recomiendan un maximo de 400mg de cafeina al dia para adultos saños, equivalente a unas 4 tazas de cafe."
       },
       {
         question: "El cafe descafeinado no contiene nada de cafeina. Verdadero o falso?",
@@ -1030,13 +1031,13 @@
         explanation: "Falso. El cafe descafeinado aun contiene entre 2-15mg de cafeina por taza. El proceso de descafeinado elimina la mayor parte, pero no toda."
       },
       {
-        question: "Cuanto tiempo tarda la cafeina en alcanzar su efecto maximo en el cuerpo?",
+        question: "¿Cuánto tiempo tarda la cafeina en alcanzar su efecto maximo en el cuerpo?",
         options: ["5 minutos", "15-30 minutos", "30-60 minutos", "2 horas"],
         correct: 2,
         explanation: "La cafeina alcanza su concentracion maxima en sangre entre 30 y 60 minutos despues de consumirla. Por eso se recomienda tomar cafe 30 min antes de entrenar."
       },
       {
-        question: "Cual de estas sustancias NO contiene cafeina?",
+        question: "¿Cuál de estas sustancias NO contiene cafeina?",
         options: ["Chocolate oscuro", "Te verde", "Jugo de naranja natural", "Coca-Cola"],
         correct: 2,
         explanation: "El jugo de naranja natural no contiene cafeina. El chocolate, el te verde y la Coca-Cola si contienen cafeina en diferentes cantidades."
@@ -1048,12 +1049,12 @@
         explanation: "Verdadero. El consumo regular de cafeina puede generar tolerancia y dependencia. Al dejar de consumirla abruptamente, pueden aparecer sintomas de abstinencia como dolor de cabeza, fatiga e irritabilidad."
       },
       {
-        question: "Que efecto tiene la cafeina sobre el ritmo cardiaco?",
+        question: "¿Qué efecto tiene la cafeina sobre el ritmo cardiaco?",
         options: [
           "Siempre lo disminuye",
           "No tiene ningun efecto",
           "Puede aumentarlo, especialmente en dosis altas",
-          "Solo afecta a mayores de 50 anos"
+          "Solo afecta a mayores de 50 años"
         ],
         correct: 2,
         explanation: "La cafeina es un estimulante que puede aumentar el ritmo cardiaco, especialmente en dosis altas o en personas sensibles. Este es uno de los parametros que mido en mi experimento."
